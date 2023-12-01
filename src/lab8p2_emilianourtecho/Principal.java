@@ -4,6 +4,9 @@
  */
 package lab8p2_emilianourtecho;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author emili
@@ -16,6 +19,26 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
     }
+    
+    public boolean UsuarioEntrar(String nombreU, String password){
+        nombreU = txf_nombreUsuario.getText();
+        password = pf_password.getText();
+        for (Usuario usuario : user) {
+            if (nombreU.equals(usuario.getNombre()) && password.equals(usuario.getPassword())) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean UsuarioExistente(String nombreU){
+        nombreU = txf_nombreUsuarios.getText();
+        for (int i = 0; i < user.size(); i++) {
+            if (nombreU.equals(user.get(i).getNombre())) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,7 +50,7 @@ public class Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         d_crearCuenta = new javax.swing.JDialog();
-        jPanel1 = new javax.swing.JPanel();
+        p_crearUsuario = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txf_passwords = new javax.swing.JTextField();
@@ -36,6 +59,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         b_regresarIS = new javax.swing.JButton();
         txf_nombreUsuarios = new javax.swing.JTextField();
+        d_paginaInicio = new javax.swing.JDialog();
         p_iniciarSesion = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         pb_buscandoUsuario = new javax.swing.JProgressBar();
@@ -52,46 +76,69 @@ public class Principal extends javax.swing.JFrame {
         d_crearCuenta.setPreferredSize(new java.awt.Dimension(750, 450));
         d_crearCuenta.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        p_crearUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        p_crearUsuario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel6.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Crear Usuario");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
+        p_crearUsuario.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Nombre de Usuario");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, -1, 20));
+        p_crearUsuario.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, -1, 20));
 
         txf_passwords.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
-        jPanel1.add(txf_passwords, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 450, -1));
+        p_crearUsuario.add(txf_passwords, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 450, -1));
 
         jLabel8.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Password");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, -1, 20));
+        p_crearUsuario.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, -1, 20));
 
         b_crearUsuario.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
         b_crearUsuario.setText("Crear Usuario");
         b_crearUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(b_crearUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 280, -1, -1));
+        b_crearUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_crearUsuarioActionPerformed(evt);
+            }
+        });
+        p_crearUsuario.add(b_crearUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 280, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Regresar a la pagina de inicio");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, -1, 20));
+        p_crearUsuario.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, -1, 20));
 
         b_regresarIS.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
-        b_regresarIS.setText("Crea una Cuenta");
+        b_regresarIS.setText("regresar");
         b_regresarIS.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(b_regresarIS, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 340, -1, -1));
+        b_regresarIS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_regresarISActionPerformed(evt);
+            }
+        });
+        p_crearUsuario.add(b_regresarIS, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 340, -1, -1));
 
         txf_nombreUsuarios.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
-        jPanel1.add(txf_nombreUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 450, -1));
+        p_crearUsuario.add(txf_nombreUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 450, -1));
 
-        d_crearCuenta.getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 450));
+        d_crearCuenta.getContentPane().add(p_crearUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 450));
+
+        d_paginaInicio.setMinimumSize(new java.awt.Dimension(750, 450));
+
+        javax.swing.GroupLayout d_paginaInicioLayout = new javax.swing.GroupLayout(d_paginaInicio.getContentPane());
+        d_paginaInicio.getContentPane().setLayout(d_paginaInicioLayout);
+        d_paginaInicioLayout.setHorizontalGroup(
+            d_paginaInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 750, Short.MAX_VALUE)
+        );
+        d_paginaInicioLayout.setVerticalGroup(
+            d_paginaInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 450, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(750, 450));
@@ -136,17 +183,72 @@ public class Principal extends javax.swing.JFrame {
         b_crearCuenta.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
         b_crearCuenta.setText("Crea una Cuenta");
         b_crearCuenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        b_crearCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_crearCuentaActionPerformed(evt);
+            }
+        });
         p_iniciarSesion.add(b_crearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 340, -1, -1));
 
         b_iniciarSesion.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
         b_iniciarSesion.setText("Iniciar Sesion");
         b_iniciarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        b_iniciarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_iniciarSesionActionPerformed(evt);
+            }
+        });
         p_iniciarSesion.add(b_iniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 280, -1, -1));
 
         getContentPane().add(p_iniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 450));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void b_iniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_iniciarSesionActionPerformed
+        String nombreU = txf_nombreUsuario.getText();
+        String password = pf_password.getText();
+        if (nombreU.isEmpty() && password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Las casillas estan vacillas, llenelas");
+        } else {
+            if (UsuarioEntrar(nombreU, password)) {
+                d_paginaInicio.pack();
+                d_paginaInicio.setLocationRelativeTo(this);
+                d_paginaInicio.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Nombre de usuario o password incorrecto");
+            }
+        }
+    }//GEN-LAST:event_b_iniciarSesionActionPerformed
+
+    private void b_crearCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_crearCuentaActionPerformed
+        d_crearCuenta.pack();
+        d_crearCuenta.setLocationRelativeTo(this);
+        d_crearCuenta.setVisible(true);
+    }//GEN-LAST:event_b_crearCuentaActionPerformed
+
+    private void b_crearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_crearUsuarioActionPerformed
+        String nombreU = txf_nombreUsuarios.getText();
+        String password = txf_passwords.getText();
+        
+        if (nombreU.isEmpty() && password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "1 o 2 casillas estan vacillas, llenela");
+        }else{
+            if (UsuarioExistente(nombreU)) {
+                JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe, ingrese otro por favor");
+            }else{
+                Usuario u = new Usuario(nombreU, password);
+                user.add(u);
+                d_crearCuenta.setLocationRelativeTo(null);
+                d_crearCuenta.setVisible(false);
+            }
+        }
+    }//GEN-LAST:event_b_crearUsuarioActionPerformed
+
+    private void b_regresarISActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_regresarISActionPerformed
+        d_crearCuenta.setLocationRelativeTo(null);
+        d_crearCuenta.setVisible(false);
+    }//GEN-LAST:event_b_regresarISActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,13 +284,14 @@ public class Principal extends javax.swing.JFrame {
             }
         });
     }
-
+    ArrayList<Usuario> user = new ArrayList();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton b_crearCuenta;
     private javax.swing.JButton b_crearUsuario;
     private javax.swing.JButton b_iniciarSesion;
     private javax.swing.JButton b_regresarIS;
     private javax.swing.JDialog d_crearCuenta;
+    private javax.swing.JDialog d_paginaInicio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -198,7 +301,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel p_crearUsuario;
     private javax.swing.JPanel p_iniciarSesion;
     private javax.swing.JProgressBar pb_buscandoUsuario;
     private javax.swing.JPasswordField pf_password;
