@@ -26,9 +26,124 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        d_crearCuenta = new javax.swing.JDialog();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txf_passwords = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        b_crearUsuario = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        b_regresarIS = new javax.swing.JButton();
+        txf_nombreUsuarios = new javax.swing.JTextField();
+        p_iniciarSesion = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        pb_buscandoUsuario = new javax.swing.JProgressBar();
+        jLabel2 = new javax.swing.JLabel();
+        txf_nombreUsuario = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        pf_password = new javax.swing.JPasswordField();
+        jLabel5 = new javax.swing.JLabel();
+        b_crearCuenta = new javax.swing.JButton();
+        b_iniciarSesion = new javax.swing.JButton();
+
+        d_crearCuenta.setMinimumSize(new java.awt.Dimension(750, 450));
+        d_crearCuenta.setPreferredSize(new java.awt.Dimension(750, 450));
+        d_crearCuenta.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel6.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("Crear Usuario");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Nombre de Usuario");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, -1, 20));
+
+        txf_passwords.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
+        jPanel1.add(txf_passwords, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 450, -1));
+
+        jLabel8.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("Password");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, -1, 20));
+
+        b_crearUsuario.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
+        b_crearUsuario.setText("Crear Usuario");
+        b_crearUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel1.add(b_crearUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 280, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setText("Regresar a la pagina de inicio");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, -1, 20));
+
+        b_regresarIS.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
+        b_regresarIS.setText("Crea una Cuenta");
+        b_regresarIS.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel1.add(b_regresarIS, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 340, -1, -1));
+
+        txf_nombreUsuarios.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
+        jPanel1.add(txf_nombreUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 450, -1));
+
+        d_crearCuenta.getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 450));
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(750, 450));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        p_iniciarSesion.setBackground(new java.awt.Color(255, 255, 255));
+        p_iniciarSesion.setMinimumSize(new java.awt.Dimension(750, 450));
+        p_iniciarSesion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Si no tiene una cuenta entonces ");
+        p_iniciarSesion.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, -1, 20));
+        p_iniciarSesion.add(pb_buscandoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 570, 20));
+
+        jLabel2.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Iniciar Sesion");
+        p_iniciarSesion.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
+
+        txf_nombreUsuario.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
+        p_iniciarSesion.add(txf_nombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 450, -1));
+
+        jLabel3.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Buscando Usuario");
+        p_iniciarSesion.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, -1, 20));
+
+        jLabel4.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Nombre de Usuario");
+        p_iniciarSesion.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, -1, 20));
+
+        pf_password.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
+        p_iniciarSesion.add(pf_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 450, -1));
+
+        jLabel5.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Password");
+        p_iniciarSesion.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, -1, 20));
+
+        b_crearCuenta.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
+        b_crearCuenta.setText("Crea una Cuenta");
+        b_crearCuenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        p_iniciarSesion.add(b_crearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 340, -1, -1));
+
+        b_iniciarSesion.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
+        b_iniciarSesion.setText("Iniciar Sesion");
+        b_iniciarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        p_iniciarSesion.add(b_iniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 280, -1, -1));
+
+        getContentPane().add(p_iniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 450));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -69,5 +184,26 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton b_crearCuenta;
+    private javax.swing.JButton b_crearUsuario;
+    private javax.swing.JButton b_iniciarSesion;
+    private javax.swing.JButton b_regresarIS;
+    private javax.swing.JDialog d_crearCuenta;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel p_iniciarSesion;
+    private javax.swing.JProgressBar pb_buscandoUsuario;
+    private javax.swing.JPasswordField pf_password;
+    private javax.swing.JTextField txf_nombreUsuario;
+    private javax.swing.JTextField txf_nombreUsuarios;
+    private javax.swing.JTextField txf_passwords;
     // End of variables declaration//GEN-END:variables
 }
