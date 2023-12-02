@@ -19,9 +19,11 @@ public class Principal extends javax.swing.JFrame {
      * Creates new form Principal
      */
     private archivosUsuarios archivoU;
+    private List<Carro> carros;
     public Principal() {
         initComponents();
         archivoU = new archivosUsuarios("Usuario.usr");
+        carros = new ArrayList();
     }
     
     public boolean UsuarioEntrar(String nombreU, String password){
@@ -537,9 +539,13 @@ public class Principal extends javax.swing.JFrame {
         } else {
             Usuario us = archivoU.BuscarUsuarios(nombreU);
             if (us != null && UsuarioEntrar(nombreU, password)) {
+                hiloLogin hL =  new hiloLogin(nombreU, pb_buscandoUsuario);
+                Thread th = new Thread(hL);
+                th.start();
                 d_paginaInicio.pack();
                 d_paginaInicio.setLocationRelativeTo(this);
                 d_paginaInicio.setVisible(true);
+                
             } else {
                 JOptionPane.showMessageDialog(this, "Nombre de usuario o password incorrecto");
             }
@@ -600,6 +606,9 @@ public class Principal extends javax.swing.JFrame {
         } else {
             Usuario us = archivoU.BuscarUsuarios(nombreU);
             if (us != null && UsuarioEntrar(nombreU, password)) {
+                hiloLogin hL =  new hiloLogin(nombreU, pb_buscandoUsuario1);
+                Thread th = new Thread(hL);
+                th.start();                
                 d_paginaInicioA.pack();
                 d_paginaInicioA.setLocationRelativeTo(this);
                 d_paginaInicioA.setVisible(true);
@@ -634,7 +643,8 @@ public class Principal extends javax.swing.JFrame {
         }else{
             Carro c = new Carro(modelo, color, precio, marca);
             car.add(c);
-            
+            archivosCarros archiveC = new archivosCarros();
+            archiveC.guardarCarro(carros, "Carros.car");            
         }
     }//GEN-LAST:event_b_crearCarActionPerformed
 
