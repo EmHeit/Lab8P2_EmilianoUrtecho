@@ -208,6 +208,12 @@ public class Principal extends javax.swing.JFrame {
 
         d_paginaInicio.setMinimumSize(new java.awt.Dimension(750, 450));
 
+        jTabbedPane2.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPane2StateChanged(evt);
+            }
+        });
+
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jTabbedPane2.addTab("Comprar", jPanel6);
@@ -670,6 +676,14 @@ public class Principal extends javax.swing.JFrame {
             archiveC.guardarCarro(carros, "Carros.car");            
         }
     }//GEN-LAST:event_b_crearCarActionPerformed
+
+    private void jTabbedPane2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane2StateChanged
+        Usuario u = new Usuario();
+        hilosGaraje hg = new hilosGaraje(t_garaje, u);
+        Thread th = new Thread(hg);
+        
+        th.start();
+    }//GEN-LAST:event_jTabbedPane2StateChanged
 
     /**
      * @param args the command line arguments
