@@ -226,10 +226,12 @@ public class Principal extends javax.swing.JFrame {
         jPanel8.add(jProgressBar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 592, 40));
 
         jLabel17.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Carro 2");
         jPanel8.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, -1, -1));
 
         jLabel18.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("Carro 1");
         jPanel8.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, -1, -1));
 

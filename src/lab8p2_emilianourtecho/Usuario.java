@@ -3,6 +3,7 @@ package lab8p2_emilianourtecho;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Usuario implements Serializable{
     private String nombreU;
@@ -11,6 +12,7 @@ public class Usuario implements Serializable{
     private String pais;
     private String fecha;
     private String password;
+    private ArrayList<Carro>carros;
     
     //Constructor
     public Usuario() {
@@ -51,7 +53,22 @@ public class Usuario implements Serializable{
         return password;
     }
 
-    
+    public ArrayList<Carro> getCarros() {
+        return carros;
+    }
+
+    public void setCarros(ArrayList<Carro> carros) {
+        this.carros = carros;
+    }
+
+    public void agregarCarroGaraje(Carro cars){
+        if (!carros.contains(cars)) {
+            carros.add(cars);
+        }
+    }
+    public void eliminarCarroGaraje(Carro cars){
+        carros.remove(cars);
+    }
     
     @Override
     public String toString() {

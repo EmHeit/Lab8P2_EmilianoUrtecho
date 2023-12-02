@@ -13,6 +13,9 @@ public class Carro {
     String marca;
     List<String> mejorasVisuales;
     boolean Reconstruido;
+    int horsepower;
+    int velocidadPunta;
+    int tiempo;
 
     public Carro(String Modelo, String Color, double precio, String marca) {
         this.Modelo = Modelo;
@@ -28,6 +31,7 @@ public class Carro {
         this.marca = marca;
         this.mejorasVisuales = mejorasVisuales;
         this.Reconstruido = Reconstruido;
+        
     }
     
     
