@@ -78,6 +78,9 @@ public class Principal extends javax.swing.JFrame {
         jProgressBar2 = new javax.swing.JProgressBar();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        jPanel9 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        t_garaje = new javax.swing.JTable();
         d_iniciarSesionAdmin = new javax.swing.JDialog();
         p_iniciarSesionAdmin = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -126,7 +129,6 @@ public class Principal extends javax.swing.JFrame {
         b_iniciarSesionAdm = new javax.swing.JButton();
 
         d_crearCuenta.setMinimumSize(new java.awt.Dimension(750, 450));
-        d_crearCuenta.setPreferredSize(new java.awt.Dimension(750, 450));
         d_crearCuenta.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         p_crearUsuario.setBackground(new java.awt.Color(255, 255, 255));
@@ -206,8 +208,11 @@ public class Principal extends javax.swing.JFrame {
 
         d_paginaInicio.setMinimumSize(new java.awt.Dimension(750, 450));
 
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jTabbedPane2.addTab("Comprar", jPanel6);
+
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -239,6 +244,26 @@ public class Principal extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Carrera", jPanel8);
 
+        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        t_garaje.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(t_garaje);
+
+        jPanel9.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, -1, 350));
+
+        jTabbedPane2.addTab("Garaje", jPanel9);
+
         javax.swing.GroupLayout d_paginaInicioLayout = new javax.swing.GroupLayout(d_paginaInicio.getContentPane());
         d_paginaInicio.getContentPane().setLayout(d_paginaInicioLayout);
         d_paginaInicioLayout.setHorizontalGroup(
@@ -251,7 +276,6 @@ public class Principal extends javax.swing.JFrame {
         );
 
         d_iniciarSesionAdmin.setMinimumSize(new java.awt.Dimension(750, 450));
-        d_iniciarSesionAdmin.setPreferredSize(new java.awt.Dimension(750, 450));
         d_iniciarSesionAdmin.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         p_iniciarSesionAdmin.setBackground(new java.awt.Color(255, 255, 255));
@@ -323,7 +347,6 @@ public class Principal extends javax.swing.JFrame {
         d_iniciarSesionAdmin.getContentPane().add(p_iniciarSesionAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 450));
 
         d_paginaInicioA.setMinimumSize(new java.awt.Dimension(750, 450));
-        d_paginaInicioA.setPreferredSize(new java.awt.Dimension(750, 450));
         d_paginaInicioA.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -734,8 +757,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JProgressBar jProgressBar2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JPanel p_crearUsuario;
@@ -745,6 +770,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JProgressBar pb_buscandoUsuario1;
     private javax.swing.JPasswordField pf_password;
     private javax.swing.JPasswordField pf_passwordA;
+    private javax.swing.JTable t_garaje;
     private javax.swing.JToggleButton tgb_color;
     private javax.swing.JTextField txf_marcca;
     private javax.swing.JTextField txf_mejoras;
