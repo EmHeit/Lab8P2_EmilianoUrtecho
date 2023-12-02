@@ -6,15 +6,22 @@ import java.util.List;
 
 public class Carro {
 
-    ArrayList<Usuario> usuario;
+    ArrayList<Jugador> jugadores;
     String Modelo;
     String Color; 
     double precio;
     String marca;
     List<String> mejorasVisuales;
     boolean Reconstruido;
+
+    public Carro(String Modelo, String Color, double precio, String marca) {
+        this.Modelo = Modelo;
+        this.Color = Color;
+        this.precio = precio;
+        this.marca = marca;
+    }
     
-    public Carro(String Modelo, String Color, double precio, String marca, List<String> mejorasVisuales, boolean Reconstruido){
+    public Carro(String Modelo, String marca, double precio, String color, List<String> mejorasVisuales, boolean Reconstruido){
         this.Modelo = Modelo;
         this.Color = Color;
         this.precio = precio;

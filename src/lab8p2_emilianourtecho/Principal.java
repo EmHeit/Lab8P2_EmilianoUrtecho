@@ -5,7 +5,9 @@
 package lab8p2_emilianourtecho;
 
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,15 +18,17 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
+    private archivosUsuarios archivoU;
     public Principal() {
         initComponents();
+        archivoU = new archivosUsuarios("Usuario.usr");
     }
     
     public boolean UsuarioEntrar(String nombreU, String password){
         nombreU = txf_nombreUsuario.getText();
         password = pf_password.getText();
         for (Usuario usuario : user) {
-            if (nombreU.equals(usuario.getNombre()) && password.equals(usuario.getPassword())) {
+            if (nombreU.equals(usuario.getNombreU()) && password.equals(usuario.getPassword())) {
                 return true;
             }
         }
@@ -33,7 +37,7 @@ public class Principal extends javax.swing.JFrame {
     public boolean UsuarioExistente(String nombreU){
         nombreU = txf_nombreUsuarios.getText();
         for (int i = 0; i < user.size(); i++) {
-            if (nombreU.equals(user.get(i).getNombre())) {
+            if (nombreU.equals(user.get(i).getNombreU())) {
                 return true;
             }
         }
@@ -59,7 +63,53 @@ public class Principal extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         b_regresarIS = new javax.swing.JButton();
         txf_nombreUsuarios = new javax.swing.JTextField();
+        cb_pais = new javax.swing.JComboBox<>();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        txf_nombreOG1 = new javax.swing.JTextField();
         d_paginaInicio = new javax.swing.JDialog();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jPanel6 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
+        jProgressBar1 = new javax.swing.JProgressBar();
+        jProgressBar2 = new javax.swing.JProgressBar();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        d_iniciarSesionAdmin = new javax.swing.JDialog();
+        p_iniciarSesionAdmin = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        pb_buscandoUsuario1 = new javax.swing.JProgressBar();
+        jLabel11 = new javax.swing.JLabel();
+        txf_nombreUsuarioA = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        pf_passwordA = new javax.swing.JPasswordField();
+        jLabel16 = new javax.swing.JLabel();
+        b_regresarUsuario = new javax.swing.JButton();
+        b_iniciarSesionA = new javax.swing.JButton();
+        b_crearCuentaA1 = new javax.swing.JButton();
+        d_paginaInicioA = new javax.swing.JDialog();
+        jPanel1 = new javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel28 = new javax.swing.JLabel();
+        txf_marcca = new javax.swing.JTextField();
+        jLabel29 = new javax.swing.JLabel();
+        txf_modelo = new javax.swing.JTextField();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        ff_precio = new javax.swing.JFormattedTextField();
+        jLabel27 = new javax.swing.JLabel();
+        cb_paisC = new javax.swing.JComboBox<>();
+        b_crearCar = new javax.swing.JButton();
+        tgb_color = new javax.swing.JToggleButton();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        txf_mejoras = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
         p_iniciarSesion = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         pb_buscandoUsuario = new javax.swing.JProgressBar();
@@ -71,6 +121,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         b_crearCuenta = new javax.swing.JButton();
         b_iniciarSesion = new javax.swing.JButton();
+        b_iniciarSesionAdm = new javax.swing.JButton();
 
         d_crearCuenta.setMinimumSize(new java.awt.Dimension(750, 450));
         d_crearCuenta.setPreferredSize(new java.awt.Dimension(750, 450));
@@ -86,8 +137,8 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("Nombre de Usuario");
-        p_crearUsuario.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, -1, 20));
+        jLabel7.setText("Pais de Residencia");
+        p_crearUsuario.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, -1, 20));
 
         txf_passwords.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
         p_crearUsuario.add(txf_passwords, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 450, -1));
@@ -125,20 +176,282 @@ public class Principal extends javax.swing.JFrame {
         txf_nombreUsuarios.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
         p_crearUsuario.add(txf_nombreUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 450, -1));
 
+        cb_pais.setBackground(new java.awt.Color(255, 255, 255));
+        cb_pais.setFont(new java.awt.Font("OCR A Extended", 1, 10)); // NOI18N
+        cb_pais.setForeground(new java.awt.Color(0, 0, 0));
+        cb_pais.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estados Unidos", "Japan", "Italia", "Alemania", "Francia", "UK", "Sweden" }));
+        cb_pais.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_paisActionPerformed(evt);
+            }
+        });
+        p_crearUsuario.add(cb_pais, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 450, -1));
+
+        jLabel14.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel14.setText("Nombre de Usuario");
+        p_crearUsuario.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, -1, 20));
+
+        jLabel13.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel13.setText("Nombre");
+        p_crearUsuario.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, -1, 20));
+
+        txf_nombreOG1.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
+        p_crearUsuario.add(txf_nombreOG1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 450, -1));
+
         d_crearCuenta.getContentPane().add(p_crearUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 450));
 
         d_paginaInicio.setMinimumSize(new java.awt.Dimension(750, 450));
+
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jTabbedPane2.addTab("Comprar", jPanel6);
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 750, Short.MAX_VALUE)
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 419, Short.MAX_VALUE)
+        );
+
+        jTabbedPane2.addTab("Vender", jPanel7);
+
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel8.add(jProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, 592, 40));
+        jPanel8.add(jProgressBar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 592, 40));
+
+        jLabel17.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
+        jLabel17.setText("Carro 2");
+        jPanel8.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, -1, -1));
+
+        jLabel18.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
+        jLabel18.setText("Carro 1");
+        jPanel8.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, -1, -1));
+
+        jTabbedPane2.addTab("Carrera", jPanel8);
 
         javax.swing.GroupLayout d_paginaInicioLayout = new javax.swing.GroupLayout(d_paginaInicio.getContentPane());
         d_paginaInicio.getContentPane().setLayout(d_paginaInicioLayout);
         d_paginaInicioLayout.setHorizontalGroup(
             d_paginaInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 750, Short.MAX_VALUE)
+            .addComponent(jTabbedPane2)
         );
         d_paginaInicioLayout.setVerticalGroup(
             d_paginaInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
+            .addComponent(jTabbedPane2)
         );
+
+        d_iniciarSesionAdmin.setMinimumSize(new java.awt.Dimension(750, 450));
+        d_iniciarSesionAdmin.setPreferredSize(new java.awt.Dimension(750, 450));
+        d_iniciarSesionAdmin.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        p_iniciarSesionAdmin.setBackground(new java.awt.Color(255, 255, 255));
+        p_iniciarSesionAdmin.setMinimumSize(new java.awt.Dimension(750, 450));
+        p_iniciarSesionAdmin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel10.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setText("Si no tiene una cuenta entonces ");
+        p_iniciarSesionAdmin.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, -1, 20));
+        p_iniciarSesionAdmin.add(pb_buscandoUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 570, 20));
+
+        jLabel11.setFont(new java.awt.Font("Maiandra GD", 0, 24)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setText("Iniciar Sesion Como Admin");
+        p_iniciarSesionAdmin.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, -1, -1));
+
+        txf_nombreUsuarioA.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
+        p_iniciarSesionAdmin.add(txf_nombreUsuarioA, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 450, -1));
+
+        jLabel12.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel12.setText("Buscando Usuario");
+        p_iniciarSesionAdmin.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, -1, 20));
+
+        jLabel15.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel15.setText("Nombre de Usuario");
+        p_iniciarSesionAdmin.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, -1, 20));
+
+        pf_passwordA.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
+        p_iniciarSesionAdmin.add(pf_passwordA, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 450, -1));
+
+        jLabel16.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel16.setText("Password");
+        p_iniciarSesionAdmin.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, -1, 20));
+
+        b_regresarUsuario.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
+        b_regresarUsuario.setText("Regresar Como Usuario");
+        b_regresarUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        b_regresarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_regresarUsuarioActionPerformed(evt);
+            }
+        });
+        p_iniciarSesionAdmin.add(b_regresarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 400, -1, -1));
+
+        b_iniciarSesionA.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
+        b_iniciarSesionA.setText("Iniciar Sesion");
+        b_iniciarSesionA.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        b_iniciarSesionA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_iniciarSesionAActionPerformed(evt);
+            }
+        });
+        p_iniciarSesionAdmin.add(b_iniciarSesionA, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 280, -1, -1));
+
+        b_crearCuentaA1.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
+        b_crearCuentaA1.setText("Crea una Cuenta como Admin");
+        b_crearCuentaA1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        b_crearCuentaA1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_crearCuentaA1ActionPerformed(evt);
+            }
+        });
+        p_iniciarSesionAdmin.add(b_crearCuentaA1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 340, -1, -1));
+
+        d_iniciarSesionAdmin.getContentPane().add(p_iniciarSesionAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 450));
+
+        d_paginaInicioA.setMinimumSize(new java.awt.Dimension(750, 450));
+        d_paginaInicioA.setPreferredSize(new java.awt.Dimension(750, 450));
+        d_paginaInicioA.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel28.setFont(new java.awt.Font("Maiandra GD", 0, 12)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel28.setText("$");
+        jPanel2.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 20, -1));
+
+        txf_marcca.setBackground(new java.awt.Color(255, 255, 255));
+        txf_marcca.setFont(new java.awt.Font("Maiandra GD", 0, 12)); // NOI18N
+        txf_marcca.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel2.add(txf_marcca, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 170, -1));
+
+        jLabel29.setFont(new java.awt.Font("Maiandra GD", 0, 12)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel29.setText("Ingrese el modelo del carro: ");
+        jPanel2.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, -1, -1));
+
+        txf_modelo.setBackground(new java.awt.Color(255, 255, 255));
+        txf_modelo.setFont(new java.awt.Font("Maiandra GD", 0, 12)); // NOI18N
+        txf_modelo.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel2.add(txf_modelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 170, -1));
+
+        jLabel30.setFont(new java.awt.Font("Maiandra GD", 0, 12)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel30.setText("Ingrese el color del carro: ");
+        jPanel2.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, -1, -1));
+
+        jLabel31.setFont(new java.awt.Font("Maiandra GD", 0, 12)); // NOI18N
+        jLabel31.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel31.setText("Ingrese el precio del carro: ");
+        jPanel2.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, -1, -1));
+
+        ff_precio.setBackground(new java.awt.Color(255, 255, 255));
+        ff_precio.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel2.add(ff_precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 170, -1));
+
+        jLabel27.setFont(new java.awt.Font("Maiandra GD", 0, 12)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel27.setText("Ingrese el pais de residencia del carro: ");
+        jPanel2.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, -1, -1));
+
+        cb_paisC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estados Unidos", "Japan", "Italia", "Alemania", "Francia", "UK", "Sweden" }));
+        jPanel2.add(cb_paisC, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 330, 220, -1));
+
+        b_crearCar.setFont(new java.awt.Font("Maiandra GD", 0, 14)); // NOI18N
+        b_crearCar.setText("Crear");
+        b_crearCar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        b_crearCar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_crearCarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(b_crearCar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 170, -1, -1));
+
+        tgb_color.setText("Color");
+        jPanel2.add(tgb_color, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 170, -1));
+
+        jLabel32.setFont(new java.awt.Font("Maiandra GD", 0, 12)); // NOI18N
+        jLabel32.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel32.setText("Ingrese marca de carro: ");
+        jPanel2.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, -1, -1));
+
+        jLabel33.setFont(new java.awt.Font("Maiandra GD", 0, 12)); // NOI18N
+        jLabel33.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel33.setText("Ingrese mejoras Visuales: ");
+        jPanel2.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 70, -1, -1));
+
+        txf_mejoras.setBackground(new java.awt.Color(255, 255, 255));
+        txf_mejoras.setFont(new java.awt.Font("Maiandra GD", 0, 12)); // NOI18N
+        txf_mejoras.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel2.add(txf_mejoras, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, 170, -1));
+
+        jTabbedPane1.addTab("Crear Carro", jPanel2);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 750, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 419, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Modificar Carro", jPanel3);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 750, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 419, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Listar Carro", jPanel4);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 750, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 419, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Eliminar Carro", jPanel5);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane1)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
+
+        d_paginaInicioA.getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 450));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(750, 450));
@@ -200,6 +513,15 @@ public class Principal extends javax.swing.JFrame {
         });
         p_iniciarSesion.add(b_iniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 280, -1, -1));
 
+        b_iniciarSesionAdm.setText("Iniciar Sesion como Admin");
+        b_iniciarSesionAdm.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        b_iniciarSesionAdm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_iniciarSesionAdmActionPerformed(evt);
+            }
+        });
+        p_iniciarSesion.add(b_iniciarSesionAdm, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 280, -1, -1));
+
         getContentPane().add(p_iniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 450));
 
         pack();
@@ -208,10 +530,11 @@ public class Principal extends javax.swing.JFrame {
     private void b_iniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_iniciarSesionActionPerformed
         String nombreU = txf_nombreUsuario.getText();
         String password = pf_password.getText();
-        if (nombreU.isEmpty() && password.isEmpty()) {
+        if (nombreU.isEmpty() || password.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Las casillas estan vacillas, llenelas");
         } else {
-            if (UsuarioEntrar(nombreU, password)) {
+            Usuario us = archivoU.BuscarUsuarios(nombreU);
+            if (us != null && UsuarioEntrar(nombreU, password)) {
                 d_paginaInicio.pack();
                 d_paginaInicio.setLocationRelativeTo(this);
                 d_paginaInicio.setVisible(true);
@@ -230,17 +553,23 @@ public class Principal extends javax.swing.JFrame {
     private void b_crearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_crearUsuarioActionPerformed
         String nombreU = txf_nombreUsuarios.getText();
         String password = txf_passwords.getText();
-        
-        if (nombreU.isEmpty() && password.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "1 o 2 casillas estan vacillas, llenela");
+        String nombreOG = txf_nombreOG1.getText();
+        String pais = (String) cb_pais.getSelectedItem();
+        if (nombreU.isEmpty() || password.isEmpty() || nombreOG.isEmpty() || pais.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "2 o mas casillas estan vacillas, llenela");
         }else{
             if (UsuarioExistente(nombreU)) {
                 JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe, ingrese otro por favor");
             }else{
-                Usuario u = new Usuario(nombreU, password);
+                Usuario u = new Usuario(nombreU, nombreOG, pais, password);
+                
                 user.add(u);
+                
+                archivoU.AgregarUsuario(u);
+                
                 d_crearCuenta.setLocationRelativeTo(null);
                 d_crearCuenta.setVisible(false);
+                
             }
         }
     }//GEN-LAST:event_b_crearUsuarioActionPerformed
@@ -249,6 +578,63 @@ public class Principal extends javax.swing.JFrame {
         d_crearCuenta.setLocationRelativeTo(null);
         d_crearCuenta.setVisible(false);
     }//GEN-LAST:event_b_regresarISActionPerformed
+
+    private void cb_paisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_paisActionPerformed
+
+    }//GEN-LAST:event_cb_paisActionPerformed
+
+    private void b_regresarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_regresarUsuarioActionPerformed
+        d_iniciarSesionAdmin.setLocationRelativeTo(null);
+        d_iniciarSesionAdmin.setVisible(false);
+    }//GEN-LAST:event_b_regresarUsuarioActionPerformed
+
+    private void b_iniciarSesionAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_iniciarSesionAActionPerformed
+        //Me dio pereza validar si el usuario es administrador o normal entonces hice lo mismo
+        
+        String nombreU = txf_nombreUsuario.getText();
+        String password = pf_password.getText();
+        if (nombreU.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Las casillas estan vacillas, llenelas");
+        } else {
+            Usuario us = archivoU.BuscarUsuarios(nombreU);
+            if (us != null && UsuarioEntrar(nombreU, password)) {
+                d_paginaInicioA.pack();
+                d_paginaInicioA.setLocationRelativeTo(this);
+                d_paginaInicioA.setVisible(true);
+                
+            } else {
+                JOptionPane.showMessageDialog(this, "Nombre de usuario o password incorrecto");
+            }
+        }        
+    }//GEN-LAST:event_b_iniciarSesionAActionPerformed
+
+    private void b_crearCuentaA1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_crearCuentaA1ActionPerformed
+        d_crearCuenta.pack();
+        d_crearCuenta.setLocationRelativeTo(this);
+        d_crearCuenta.setVisible(true);
+    }//GEN-LAST:event_b_crearCuentaA1ActionPerformed
+
+    private void b_iniciarSesionAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_iniciarSesionAdmActionPerformed
+        d_iniciarSesionAdmin.pack();
+        d_iniciarSesionAdmin.setLocationRelativeTo(this);
+        d_iniciarSesionAdmin.setVisible(true);
+    }//GEN-LAST:event_b_iniciarSesionAdmActionPerformed
+
+    private void b_crearCarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_crearCarActionPerformed
+        String modelo = txf_marcca.getText();
+        String marca = txf_modelo.getText();
+        String pais = (String) cb_paisC.getSelectedItem();
+        double precio = Double.parseDouble(ff_precio.getText());
+        String color = tgb_color.getColorModel().toString();
+                
+        if (modelo.isEmpty() || marca.isEmpty() || pais.isEmpty() || precio == 0.0) {
+            JOptionPane.showMessageDialog(this, "No ha pasado nada");
+        }else{
+            Carro c = new Carro(modelo, color, precio, marca);
+            car.add(c);
+            
+        }
+    }//GEN-LAST:event_b_crearCarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -285,27 +671,75 @@ public class Principal extends javax.swing.JFrame {
         });
     }
     ArrayList<Usuario> user = new ArrayList();
+    ArrayList<Carro> car = new ArrayList();
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton b_crearCar;
     private javax.swing.JButton b_crearCuenta;
+    private javax.swing.JButton b_crearCuentaA1;
     private javax.swing.JButton b_crearUsuario;
     private javax.swing.JButton b_iniciarSesion;
+    private javax.swing.JButton b_iniciarSesionA;
+    private javax.swing.JButton b_iniciarSesionAdm;
     private javax.swing.JButton b_regresarIS;
+    private javax.swing.JButton b_regresarUsuario;
+    private javax.swing.JComboBox<String> cb_pais;
+    private javax.swing.JComboBox<String> cb_paisC;
     private javax.swing.JDialog d_crearCuenta;
+    private javax.swing.JDialog d_iniciarSesionAdmin;
     private javax.swing.JDialog d_paginaInicio;
+    private javax.swing.JDialog d_paginaInicioA;
+    private javax.swing.JFormattedTextField ff_precio;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JProgressBar jProgressBar2;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JPanel p_crearUsuario;
     private javax.swing.JPanel p_iniciarSesion;
+    private javax.swing.JPanel p_iniciarSesionAdmin;
     private javax.swing.JProgressBar pb_buscandoUsuario;
+    private javax.swing.JProgressBar pb_buscandoUsuario1;
     private javax.swing.JPasswordField pf_password;
+    private javax.swing.JPasswordField pf_passwordA;
+    private javax.swing.JToggleButton tgb_color;
+    private javax.swing.JTextField txf_marcca;
+    private javax.swing.JTextField txf_mejoras;
+    private javax.swing.JTextField txf_modelo;
+    private javax.swing.JTextField txf_nombreOG1;
     private javax.swing.JTextField txf_nombreUsuario;
+    private javax.swing.JTextField txf_nombreUsuarioA;
     private javax.swing.JTextField txf_nombreUsuarios;
     private javax.swing.JTextField txf_passwords;
     // End of variables declaration//GEN-END:variables
